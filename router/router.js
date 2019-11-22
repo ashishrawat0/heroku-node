@@ -219,6 +219,7 @@ module.exports = () => {
     // })
     //admin will add examiner
     app.post('/examiner',middleware, async(req, res) => {
+        debugger
         if(req.headers.role=="Admin")
     {   const response = await Users.adminDetails(req, res)
         res.send(response);
@@ -277,9 +278,13 @@ module.exports = () => {
         if(req.headers.role=="Admin")
         {
         debugger
-        res.send(200)
+        res.status(200).send("autho")
         }
         res.status(401).send("unauthorized")
     })
+    app.get('/userawake',middleware,(req,res)=>{
+        res.send(req.headers.role);
+
+   })
     return app
 }
